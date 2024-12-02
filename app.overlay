@@ -1,11 +1,12 @@
 /*
- * Copyright (c) 2021, STMicroelectronics
+ * Copyright (c) 2024, DualCrux
  *
  * SPDX-License-Identifier: Apache-2.0
  */
 
 #include <zephyr/dt-bindings/led/led.h>
 
+/* null out STM32 min spi1 */
 arduino_spi: &spi1 {};
 
 &arduino_spi {
