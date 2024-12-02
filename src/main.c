@@ -27,7 +27,7 @@ LOG_MODULE_REGISTER(main);
 #error Unable to determine length of LED strip
 #endif
 
-#define DELAY_TIME K_MSEC(3000) //CONFIG_SAMPLE_LED_UPDATE_DELAY)
+#define DELAY_TIME K_MSEC(CONFIG_SAMPLE_LED_UPDATE_DELAY)
 
 #define RGB(_r, _g, _b) { .r = (_r), .g = (_g), .b = (_b) }
 
@@ -35,7 +35,7 @@ static const struct led_rgb colors[] = {
 	RGB(0x20, 0x00, 0x00), /* red */
 	RGB(0x00, 0x20, 0x00), /* green */
 	RGB(0x00, 0x00, 0x20), /* blue */
-        RGB(0x20, 0x10, 0x10), 
+        RGB(0x20, 0x10, 0x10), /* pinkish */
 };
 
 static struct led_rgb pixels[STRIP_NUM_PIXELS];
@@ -62,20 +62,15 @@ int main(void)
           }
           color = (color + 1) % ARRAY_SIZE(colors);
 
-          for (cursor; cursor < 60; cursor++) {
+          for (/*cursor*/; cursor < 60; cursor++) {
             memcpy(&pixels[cursor], &colors[color], sizeof(struct led_rgb));
           }
           color = (color + 1) % ARRAY_SIZE(colors);
 
-          for (cursor; cursor < 60+36; cursor++) {
+          for (/*cursor*/; cursor < 96; cursor++) {
             memcpy(&pixels[cursor], &colors[color], sizeof(struct led_rgb));
           }
           color = (color + 1) % ARRAY_SIZE(colors);
-
-          for (cursor; cursor < 30+30+36+36; cursor++) {
-            memcpy(&pixels[cursor], &colors[color], sizeof(struct led_rgb));
-          }
-          color = (color + 2) % ARRAY_SIZE(colors);
 
           rc = led_strip_update_rgb(strip, pixels, STRIP_NUM_PIXELS);
           if (rc) {
