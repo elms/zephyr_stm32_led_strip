@@ -62,12 +62,12 @@ int main(void)
           }
           color = (color + 1) % ARRAY_SIZE(colors);
 
-          for (/*cursor*/; cursor < 60; cursor++) {
+          for (/*cursor*/; cursor < 2*30; cursor++) {
             memcpy(&pixels[cursor], &colors[color], sizeof(struct led_rgb));
           }
           color = (color + 1) % ARRAY_SIZE(colors);
 
-          for (/*cursor*/; cursor < 96; cursor++) {
+          for (/*cursor*/; cursor < 3*30; cursor++) {
             memcpy(&pixels[cursor], &colors[color], sizeof(struct led_rgb));
           }
           color = (color + 1) % ARRAY_SIZE(colors);
